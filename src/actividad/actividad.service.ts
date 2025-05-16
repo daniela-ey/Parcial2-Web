@@ -21,16 +21,10 @@ export class ActividadService {
       throw new Error('El título no debe contener símbolos especiales');
     }
 
-    if (actividad.cupoMaximo < 1) {
-      throw new Error('El cupo máximo debe ser mayor a 0');
-    }
-
-    actividad.estado = '0'; 
-
     return await this.actividadRepositorio.save(actividad);
   }
 
-  async cambiarEstado(actividadId: string, nuevoEstado: string): Promise<ActividadEntity> {
+  async cambiarEstado(actividadId: string, estado: string): Promise<ActividadEntity> {
     const actividad = await this.actividadRepositorio.findOne({
       where: { id: actividadId },
       relations: ['estudiantes'],
@@ -44,7 +38,7 @@ export class ActividadService {
     const cupo = actividad.cupoMaximo;
     
 
-    switch (nuevoEstado) {
+    switch (estado) {
       case '1': 
         if (inscritos < cupo * 0.8) {
           throw new Error('La actividad solo puede cerrarse si al menos el 80% del cupo está lleno');
@@ -61,10 +55,10 @@ export class ActividadService {
         break;
 
       default:
-        throw new Error('El estado debe ser 0 (abierta), 1 (cerrada) o 2 (finalizada)');
+        throw new Error('El estado debe ser 0, 1 o 2 ');
     }
 
-    actividad.estado = nuevoEstado;
+    actividad.estado = estado;
     return await this.actividadRepositorio.save(actividad);
   }
 

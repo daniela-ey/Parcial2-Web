@@ -63,10 +63,6 @@ export class EstudianteService {
       throw new Error('La actividad no está abierta para inscripción');
     }
 
-    if (actividad.estudiantes.length >= actividad.cupoMaximo) {
-      throw new Error('La actividad ya alcanzó su cupo máximo');
-    }
-
     const yaInscrito = estudiante.actividades.some(a => a.id === actividad.id);
     if (yaInscrito) {
       throw new Error('El estudiante ya está inscrito en esta actividad');
