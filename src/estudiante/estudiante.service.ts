@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { EstudianteEntity } from './estudiante.entity/estudiante.entity';
-import { ActividadEntity } from 'src/actividad/actividad.entity/actividad.entity';
+import { ActividadEntity } from '../actividad/actividad.entity/actividad.entity';
 
 @Injectable()
 export class EstudianteService {
@@ -27,14 +27,14 @@ export class EstudianteService {
     return await this.estudianteRepository.save(estudiante);
   }
 
-  async findEstudianteById(id: string): Promise<EstudianteEntity> {
+ async findEstudianteById(id: string): Promise<EstudianteEntity> {
     const estudiante = await this.estudianteRepository.findOne({
       where: { id },
       relations: ['actividades', 'resenas'],
     });
 
     if (!estudiante) {
-      throw new Error('Estudiante no encontrado');
+      throw new NotFoundException('Estudiante no encontrado');
     }
 
     return estudiante;

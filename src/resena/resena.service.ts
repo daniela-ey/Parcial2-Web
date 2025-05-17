@@ -16,7 +16,7 @@ export class ResenaService {
             throw new Error('La actividad no ha finalizado');
         }
 
-        if (resena.actividad.estudiantes.includes(resena.estudiante)) {
+        if (!resena.actividad.estudiantes.includes(resena.estudiante)) {
             throw new Error('El estudiante no está inscrito en la actividad');
         }
 
