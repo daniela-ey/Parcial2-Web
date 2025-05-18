@@ -1,0 +1,37 @@
+{
+	"info": {
+		"_postman_id": "a2d7ff23-374d-43ef-b640-40886e5068cb",
+		"name": "Resena",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32499754",
+		"_collection_link": "https://www.postman.com/crimson-resonance-578640-1/workspace/parcial2-web/collection/32499754-a2d7ff23-374d-43ef-b640-40886e5068cb?action=share&source=collection_link&creator=32499754"
+	},
+	"item": [
+		{
+			"name": "Agregar Resena",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"comentario\": \"La actividad fue muy enriquecedora y bien organizada.\",\r\n  \"calificacion\": \"5\",\r\n  \"fecha\": \"2025-06-01\",\r\n  \"actividad\": {\r\n    \"id\": \"{{actividad_id}}\"\r\n  },\r\n  \"estudiante\": {\r\n    \"id\": \"{{estudiante_id}}\"\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resena",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resena"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "cdbfd18b-17ea-4280-897b-6b4c2d472e14",
+		"name": "Estudiante",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32499754",
+		"_collection_link": "https://www.postman.com/crimson-resonance-578640-1/workspace/parcial2-web/collection/32499754-cdbfd18b-17ea-4280-897b-6b4c2d472e14?action=share&source=collection_link&creator=32499754"
+	},
+	"item": [
+		{
+			"name": "crearEstudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"estudiante_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cedula\": 12345678,\r\n  \"nombre\": \"Daniela Pérez\",\r\n  \"correo\": \"daniela.perez@example.com\",\r\n  \"programa\": \"Ingeniería de Sistemas\",\r\n  \"semestre\": 5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/estudiante",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"estudiante"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/estudiante/{{estudiante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"estudiante",
+						"{{estudiante_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inscribir Actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cedula\": 12345678,\r\n  \"nombre\": \"Daniela Pérez\",\r\n  \"correo\": \"daniela.perez@example.com\",\r\n  \"programa\": \"Ingeniería de Sistemas\",\r\n  \"semestre\": 5\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/estudiante/{{estudiante_id}}/inscribirActividad/{{actividad_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"estudiante",
+						"{{estudiante_id}}",
+						"inscribirActividad",
+						"{{actividad_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
